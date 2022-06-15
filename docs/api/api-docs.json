@@ -1,0 +1,418 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Fleet Management System API",
+    "version": "1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/vehicles": {
+      "get": {
+        "tags": [
+          "vehicle-controller"
+        ],
+        "operationId": "findAllVehicles",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "vehicle-controller"
+        ],
+        "operationId": "createVehicle",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/packs": {
+      "get": {
+        "tags": [
+          "pack-controller"
+        ],
+        "operationId": "findAllPacks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PackDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "pack-controller"
+        ],
+        "operationId": "createPack",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PackDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/packs/bag": {
+      "post": {
+        "tags": [
+          "pack-controller"
+        ],
+        "operationId": "assignToBag",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackBagDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/delivery-points": {
+      "get": {
+        "tags": [
+          "delivery-point-controller"
+        ],
+        "operationId": "findAllDeliveryPoints",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeliveryPointDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "delivery-point-controller"
+        ],
+        "operationId": "createDeliveryPoint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryPointDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeliveryPointDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/deliveries": {
+      "post": {
+        "tags": [
+          "delivery-controller"
+        ],
+        "operationId": "makeDeliveries",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeliveryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/bags": {
+      "get": {
+        "tags": [
+          "bag-controller"
+        ],
+        "operationId": "findAllBags",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "bag-controller"
+        ],
+        "operationId": "createBag",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BagDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VehicleDto": {
+        "required": [
+          "licencePlate"
+        ],
+        "type": "object",
+        "properties": {
+          "licencePlate": {
+            "type": "string"
+          }
+        }
+      },
+      "PackDto": {
+        "required": [
+          "barcode",
+          "deliveryPointForUnloading"
+        ],
+        "type": "object",
+        "properties": {
+          "barcode": {
+            "type": "string"
+          },
+          "deliveryPointForUnloading": {
+            "maximum": 3,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "volumetricWeight": {
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PackBagDto": {
+        "required": [
+          "bagBarcode",
+          "barcode"
+        ],
+        "type": "object",
+        "properties": {
+          "barcode": {
+            "type": "string"
+          },
+          "bagBarcode": {
+            "type": "string"
+          }
+        }
+      },
+      "DeliveryPointDto": {
+        "required": [
+          "deliveryPointType",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "deliveryPointType": {
+            "maximum": 3,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeliveryDto": {
+        "required": [
+          "plate",
+          "route"
+        ],
+        "type": "object",
+        "properties": {
+          "plate": {
+            "type": "string"
+          },
+          "route": {
+            "maxItems": 2147483647,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RouteDto"
+            }
+          }
+        }
+      },
+      "RouteDto": {
+        "required": [
+          "deliveries",
+          "deliveryPoint"
+        ],
+        "type": "object",
+        "properties": {
+          "deliveryPoint": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "deliveries": {
+            "maxItems": 2147483647,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentDto"
+            }
+          }
+        }
+      },
+      "ShipmentDto": {
+        "required": [
+          "barcode"
+        ],
+        "type": "object",
+        "properties": {
+          "barcode": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "BagDto": {
+        "required": [
+          "barcode",
+          "deliveryPointForUnloading"
+        ],
+        "type": "object",
+        "properties": {
+          "barcode": {
+            "type": "string"
+          },
+          "deliveryPointForUnloading": {
+            "maximum": 3,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}
